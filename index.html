@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كتالوج القطع الصناعية - QR Catalog</title>
+    <title>Industrial Catalog - QR Catalog</title>
     <style>
         :root {
             --primary-color: #1e293b;
@@ -29,13 +29,12 @@
             overflow-x: hidden;
         }
 
-        /* رأس الصفحة / القسم الأول */
         header {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             padding: 2rem 1rem;
             text-align: center;
             border-bottom: 2px solid var(--border-color);
-            min-height: 40vh;
+            min-height: 30vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -52,7 +51,7 @@
         }
 
         h1.part-name {
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
             color: var(--text-color);
         }
@@ -66,10 +65,8 @@
             display: inline-block;
         }
 
-        /* أقسام الصفحة */
         section {
-            min-height: 80vh;
-            padding: 4rem 1.5rem;
+            padding: 3rem 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -79,8 +76,8 @@
         }
 
         section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
             color: var(--accent-color);
             position: relative;
         }
@@ -88,230 +85,74 @@
         section h2::after {
             content: '';
             display: block;
-            width: 50px;
+            width: 40px;
             height: 3px;
             background-color: var(--accent-color);
-            margin: 0.5rem auto 0;
+            margin: 0.4rem auto 0;
             border-radius: 2px;
         }
 
-        /* حاوية نموذج 3D وعارض 2D */
-        .viewer-container {
+        .media-container {
             width: 100%;
-            max-width: 800px;
-            height: 400px;
+            max-width: 600px;
             background-color: var(--card-bg);
-            border: 2px dashed var(--border-color);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .viewer-placeholder-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* جدول المواصفات التقنية */
-        .specs-table {
-            width: 100%;
-            max-width: 800px;
-            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            text-align: right;
-            border-collapse: collapse;
+            margin-bottom: 1rem;
         }
 
-        .specs-table th, .specs-table td {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+        .media-container img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .specs-table th {
-            background-color: rgba(59, 130, 246, 0.1);
-            color: var(--accent-color);
-            width: 30%;
+        .viewer-container {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        .specs-table td {
-            color: var(--text-color);
-            width: 70%;
-        }
-
-        .specs-table tr:last-child td, .specs-table tr:last-child th {
-            border-bottom: none;
-        }
-
-        /* زر تحميل أو فتح PDF */
-        .btn-pdf {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 0.8rem 2rem;
+        .viewer-container iframe {
+            width: 100%;
+            height: 100%;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s ease;
-            display: inline-block;
-            margin-top: 1rem;
-        }
-
-        .btn-pdf:hover {
-            background-color: #2563eb;
-        }
-
-        /* مؤشر التمرير */
-        .scroll-indicator {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
         }
     </style>
 </head>
 <body>
 
-    <!-- رأس الصفحة: الشاشة الأولى -->
     <header>
-        <div class="company-logo" id="companyLogo">الصناعات الهندسية المتقدمة</div>
-        <h1 class="part-name" id="partName">جاري تحميل اسم القطعة...</h1>
-        <div class="part-number" id="partNumber">Part-000</div>
-        <div class="scroll-indicator">اسحب لأسفل لعرض التفاصيل والنماذج ⬇</div>
+        <div class="company-logo">MECO TN</div>
+        <h1 class="part-name">High-Pressure Hydraulic & Pumping System</h1>
+        <div class="part-number">MECO-SYS-001</div>
+        <p style="margin-top: 0.8rem; color: var(--text-muted);">Real installation photo & 3D model below ↓</p>
     </header>
 
-    <!-- القسم الأول: نموذج 3D -->
-    <section id="section-3d">
-        <h2>نموذج ثلاثي الأبعاد (3D Model)</h2>
+    <!-- قسم الصور الحقيقية -->
+    <section>
+        <h2>Real System Photo</h2>
+        <div class="media-container">
+            <!-- ملاحظة: يمكنك لاحقاً رفع الصورة إلى مستودع غيت هاب وتغيير رابط الـ src هنا لتدخل الصورة مباشرة -->
+            <img src="https://via.placeholder.com/600x800/1e293b/3b82f6?text=Upload+Real+Photo+Here" alt="Real System Installation">
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">The actual hardware setup at the site.</p>
+    </section>
+
+    <!-- قسم نموذج 3D -->
+    <section>
+        <h2>3D Engineering Model</h2>
         <div class="viewer-container">
-            <div class="viewer-placeholder-icon">📦</div>
-            <p>منطقة نموذج 3D تفاعلي (قيد الإنشاء)</p>
-            <span style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">يدعم التدوير والتكبير باللمس مستقبلاً</span>
+            <iframe src="https://gmail6690048.autodesk360.com/g/shares/SH90d2dQT28d5b6028119dcd7af2681634f6" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
         </div>
     </section>
 
-    <!-- القسم الثاني: الرسم الفني 2D -->
-    <section id="section-2d">
-        <h2>الرسم الفني الهندسي (2D Drawing)</h2>
-        <div class="viewer-container">
-            <div class="viewer-placeholder-icon">📐</div>
-            <p>مخطط الرسم الفني بصيغة PDF</p>
-            <a href="#" class="btn-pdf" id="pdfLink">فتح الرسم الهندسي (PDF)</a>
-        </div>
-    </section>
-
-    <!-- القسم الثالث: البيانات التقنية -->
-    <section id="section-info">
-        <h2>المواصفات التقنية</h2>
-        <table class="specs-table">
-            <tr>
-                <th>اسم القطعة</th>
-                <td id="infoPartName">-</td>
-            </tr>
-            <tr>
-                <th>رقم القطعة</th>
-                <td id="infoPartNumber">-</td>
-            </tr>
-            <tr>
-                <th>الوصف</th>
-                <td id="infoDescription">-</td>
-            </tr>
-            <tr>
-                <th>المادة المصنعة</th>
-                <td id="infoMaterial">-</td>
-            </tr>
-            <tr>
-                <th>الأبعاد</th>
-                <td id="infoDimensions">-</td>
-            </tr>
-            <tr>
-                <th>الوزن</th>
-                <td id="infoWeight">-</td>
-            </tr>
-            <tr>
-                <th>ملاحظات إضافية</th>
-                <td id="infoNotes">-</td>
-            </tr>
-        </table>
-    </section>
-
-    <script>
-        // قاعدة بيانات وهمية تمثل معلومات الـ 50 إلى 100 قطعة
-        const partsDatabase = {
-            "001": {
-                name: "مضخة هيدروليكية ضغط عالي",
-                number: "HYD-PUMP-001",
-                description: "مضخة هيدروليكية رئيسية تستخدم في خطوط الإنتاج الثقيلة لتحمل الضغط المرتفع المستمر.",
-                material: "صلب مقاوم للصدأ (Stainless Steel 316)",
-                dimensions: "250 × 150 × 120 مم",
-                weight: "14.5 كغ",
-                notes: "يجب فحص الزيت وصيانة الفلاتر كل 500 ساعة تشغيل.",
-                pdfUrl: "#"
-            },
-            "002": {
-                name: "ترس نقل الحركة المسنن",
-                number: "GEAR-BOX-002",
-                description: "ترس تخفيض السرعة لصناديق التروس الكبيرة في المحركات الصناعية.",
-                material: "سبيكة فولاذ مصلب (Hardened Alloy Steel)",
-                dimensions: "قطر 180 مم × سمك 45 مم",
-                weight: "6.2 كغ",
-                notes: "تأكد من الشحم الدوري لأسنان الترس.",
-                pdfUrl: "#"
-            },
-            "003": {
-                name: "صمام تحكم كهربائي (سolenoid)",
-                number: "VALV-SOL-003",
-                description: "صمام تحكم بالهواء المضغوط لخطوط التجميع الآلية.",
-                material: "ألومنيوم معالج مؤكسد",
-                dimensions: "100 × 50 × 30 مم",
-                weight: "0.8 كغ",
-                notes: "الجهد الكهربائي التشغيلي: 24 فولت.",
-                pdfUrl: "#"
-            }
-        };
-
-        // قراءة معرّف القطعة من الرابط (مثال: index.html?id=001)
-        const urlParams = new URLSearchParams(window.location.search);
-        const partId = urlParams.get('id') || "001"; // افتراضياً القطعة 001 إذا لم يتم تمرير رقم
-
-        // جلب بيانات القطعة المطلوبة من القاعدة
-        const currentPart = partsDatabase[partId] || {
-            name: "قطعة غير متوفرة",
-            number: "N/A",
-            description: "عذراً، هذه القطعة غير مسجلة في النظام الحالي.",
-            material: "-",
-            dimensions: "-",
-            weight: "-",
-            notes: "-",
-            pdfUrl: "#"
-        };
-
-        // تحديث محتوى الصفحة بالبيانات الخاصة بالقطعة
-        document.getElementById('partName').textContent = currentPart.name;
-        document.getElementById('partNumber').textContent = currentPart.number;
-        
-        document.getElementById('infoPartName').textContent = currentPart.name;
-        document.getElementById('infoPartNumber').textContent = currentPart.number;
-        document.getElementById('infoDescription').textContent = currentPart.description;
-        document.getElementById('infoMaterial').textContent = currentPart.material;
-        document.getElementById('infoDimensions').textContent = currentPart.dimensions;
-        document.getElementById('infoWeight').textContent = currentPart.weight;
-        document.getElementById('infoNotes').textContent = currentPart.notes;
-        document.getElementById('pdfLink').href = currentPart.pdfUrl;
-    </script>
 </body>
 </html>
