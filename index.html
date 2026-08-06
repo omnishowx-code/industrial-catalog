@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Industrial Catalog - QR Catalog</title>
+    <title>Industrial Catalog - MECO TN</title>
     <style>
         :root {
             --primary-color: #1e293b;
@@ -92,7 +92,7 @@
             border-radius: 2px;
         }
 
-        .media-container {
+        .media-container, .info-container {
             width: 100%;
             max-width: 600px;
             background-color: var(--card-bg);
@@ -101,12 +101,40 @@
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             margin-bottom: 1rem;
+            padding: 1.5rem;
+            text-align: left;
         }
 
         .media-container img {
             width: 100%;
             height: auto;
             display: block;
+            border-radius: 8px;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: var(--text-color);
         }
 
         .viewer-container {
@@ -133,17 +161,45 @@
         <div class="company-logo">MECO TN</div>
         <h1 class="part-name">High-Pressure Hydraulic & Pumping System</h1>
         <div class="part-number">MECO-SYS-001</div>
-        <p style="margin-top: 0.8rem; color: var(--text-muted);">Real installation photo & 3D model below ↓</p>
+        <p style="margin-top: 0.8rem; color: var(--text-muted);">Real photo, 3D model, and specifications below ↓</p>
     </header>
 
     <!-- قسم الصور الحقيقية -->
     <section>
         <h2>Real System Photo</h2>
         <div class="media-container">
-            <!-- ملاحظة: يمكنك لاحقاً رفع الصورة إلى مستودع غيت هاب وتغيير رابط الـ src هنا لتدخل الصورة مباشرة -->
             <img src="https://via.placeholder.com/600x800/1e293b/3b82f6?text=Upload+Real+Photo+Here" alt="Real System Installation">
         </div>
         <p style="color: var(--text-muted); font-size: 0.9rem;">The actual hardware setup at the site.</p>
+    </section>
+
+    <!-- قسم معلومات وبيانات القطعة (Information) -->
+    <section>
+        <h2>Technical Information</h2>
+        <div class="info-container">
+            <ul class="info-list">
+                <li>
+                    <span class="info-label">Application:</span>
+                    <span class="info-value">High-Pressure Pumping & Filtration</span>
+                </li>
+                <li>
+                    <span class="info-label">Operating Pressure:</span>
+                    <span class="info-value">Up to 10 Bar</span>
+                </li>
+                <li>
+                    <span class="info-label">Pumps Type:</span>
+                    <span class="info-value">Dual Metering Pumps (Blue Series)</span>
+                </li>
+                <li>
+                    <span class="info-label">Filtration Unit:</span>
+                    <span class="info-value">Heavy-Duty Multi-Cartridge Filter</span>
+                </li>
+                <li>
+                    <span class="info-label">Status:</span>
+                    <span class="info-value">Available / Custom Assembly</span>
+                </li>
+            </ul>
+        </div>
     </section>
 
     <!-- قسم نموذج 3D -->
