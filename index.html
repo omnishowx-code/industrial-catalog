@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MECO TN - Interactive Catalog</title>
+    <title>Thermeco Industrie - Interactive Catalog</title>
     <style>
         :root {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
             --accent-color: #3b82f6;
+            --neon-green: #22c55e;
             --text-color: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: #334155;
@@ -32,18 +33,32 @@
 
         header {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            padding: 2.5rem 1rem;
+            padding: 1.5rem 1rem;
             text-align: center;
             border-bottom: 2px solid var(--border-color);
         }
 
-        .company-logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .logo-img {
+            max-width: 220px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .tagline {
+            color: var(--neon-green);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: capitalize;
+            text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
         }
 
         .main-container {
@@ -53,11 +68,9 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 1.5k;
             gap: 1.2rem;
         }
 
-        /* تصميم الأيقونات الثلاثة */
         .menu-btn {
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
@@ -87,7 +100,6 @@
             font-size: 1.8rem;
         }
 
-        /* الأقسام المخفية والظاهرة عند النقر */
         .content-section {
             display: none;
             padding: 1.5rem;
@@ -119,7 +131,6 @@
             background: var(--accent-color);
         }
 
-        /* تنسيق محتوى 2D */
         .media-box img {
             width: 100%;
             height: auto;
@@ -127,7 +138,6 @@
             border: 2px solid var(--border-color);
         }
 
-        /* تنسيق محتوى Information */
         .info-box {
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
@@ -161,7 +171,6 @@
             text-align: right;
         }
 
-        /* تنسيق محتوى 3D */
         .viewer-box {
             width: 100%;
             height: 450px;
@@ -189,22 +198,23 @@
 <body>
 
     <header>
-        <div class="company-logo">MECO TN</div>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">Industrial Equipment Catalog</p>
+        <div class="logo-container">
+            <img src="1000011542.jpg" alt="Thermeco Industrie Logo" class="logo-img">
+            <p class="tagline">We are here to help you</p>
+        </div>
     </header>
 
     <div class="main-container">
 
-        <!-- القائمة الرئيسية (الأيقونات الثلاثة) -->
         <div id="homeMenu" class="content-section active">
             <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-muted);">Please select an option below:</p>
             
             <div class="menu-btn" onclick="showSection('section3d')">
-                <span>📦</span> 3D Model
+                <span>📦</span> 3D
             </div>
             
             <div class="menu-btn" onclick="showSection('section2d')">
-                <span>🖼️</span> 2D View
+                <span>🖼️</span> 2D
             </div>
             
             <div class="menu-btn" onclick="showSection('sectionInfo')">
@@ -212,28 +222,24 @@
             </div>
         </div>
 
-        <!-- قسم 3D -->
         <div id="section3d" class="content-section">
-            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
+            <button class="back-btn" onclick="goHome()">Back to Menu</button>
             <h2 style="margin-bottom: 1rem; color: var(--accent-color);">3D Model View</h2>
             <div class="viewer-box">
                 <iframe src="https://gmail6690048.autodesk360.com/g/shares/SH90d2dQT28d5b6028119dcd7af2681634f6" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
             </div>
         </div>
 
-        <!-- قسم 2D -->
         <div id="section2d" class="content-section">
-            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
+            <button class="back-btn" onclick="goHome()">Back to Menu</button>
             <h2 style="margin-bottom: 1rem; color: var(--accent-color);">2D View</h2>
             <div class="media-box">
-                <!-- تأكد أن اسم الصورة في هاتفك مطابق لهذا الاسم -->
                 <img src="1000011534_2.jpg" alt="2D System View">
             </div>
         </div>
 
-        <!-- قسم Information -->
         <div id="sectionInfo" class="content-section">
-            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
+            <button class="back-btn" onclick="goHome()">Back to Menu</button>
             <h2 style="margin-bottom: 1rem; color: var(--accent-color);">Technical Information</h2>
             <div class="info-box">
                 <ul class="info-list">
@@ -260,23 +266,20 @@
     </div>
 
     <footer>
-        &copy; 2026 MECO TN - All Rights Reserved
+        &copy; 2026 Thermeco Industrie - All Rights Reserved
     </footer>
 
     <script>
         function showSection(sectionId) {
-            // إخفاء القائمة الرئيسية وكل الأقسام
             document.getElementById('homeMenu').classList.remove('active');
             document.getElementById('section3d').classList.remove('active');
             document.getElementById('section2d').classList.remove('active');
             document.getElementById('sectionInfo').classList.remove('active');
             
-            // إظهار القسم المطلوب فقط
             document.getElementById(sectionId).classList.add('active');
         }
 
         function goHome() {
-            // العودة للقائمة الرئيسية
             document.getElementById('section3d').classList.remove('active');
             document.getElementById('section2d').classList.remove('active');
             document.getElementById('sectionInfo').classList.remove('active');
