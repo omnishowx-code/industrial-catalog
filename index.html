@@ -110,7 +110,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Modern Interactive Cards */
         .menu-card {
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
@@ -281,6 +280,42 @@
             background: rgba(24, 119, 242, 0.1);
         }
 
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(9, 13, 22, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        #loader.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         footer {
             text-align: center;
             padding: 1rem;
@@ -291,6 +326,11 @@
     </style>
 </head>
 <body>
+
+    <div id="loader">
+        <div class="spinner"></div>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">Loading Module...</p>
+    </div>
 
     <header>
         <div class="brand-container">
@@ -305,11 +345,10 @@
 
     <div class="main-container">
 
-        <!-- Home Menu -->
         <div id="homeMenu" class="content-section active">
             <p class="section-intro">Select an option to view specifications:</p>
             
-            <div class="menu-card" onclick="showSection('section3d')">
+            <div class="menu-card" onclick="loadSection('section3d')">
                 <div class="card-icon">🌐</div>
                 <div class="card-info">
                     <div class="card-title">3D Model View</div>
@@ -317,7 +356,7 @@
                 </div>
             </div>
             
-            <div class="menu-card" onclick="showSection('section2d')">
+            <div class="menu-card" onclick="loadSection('section2d')">
                 <div class="card-icon">📐</div>
                 <div class="card-info">
                     <div class="card-title">2D Blueprint View</div>
@@ -325,7 +364,7 @@
                 </div>
             </div>
             
-            <div class="menu-card" onclick="showSection('sectionInfo')">
+            <div class="menu-card" onclick="loadSection('sectionInfo')">
                 <div class="card-icon">📊</div>
                 <div class="card-info">
                     <div class="card-title">Technical Information</div>
@@ -343,7 +382,6 @@
             </div>
         </div>
 
-        <!-- 3D Section -->
         <div id="section3d" class="content-section">
             <button class="back-btn" onclick="goHome()">← Back to Menu</button>
             <h2 style="margin-bottom: 1rem; color: var(--accent-color); font-size: 1.2rem;">3D Model View</h2>
@@ -352,7 +390,6 @@
             </div>
         </div>
 
-        <!-- 2D Section -->
         <div id="section2d" class="content-section">
             <button class="back-btn" onclick="goHome()">← Back to Menu</button>
             <h2 style="margin-bottom: 1rem; color: var(--accent-color); font-size: 1.2rem;">2D Blueprint View</h2>
@@ -363,7 +400,6 @@
             </div>
         </div>
 
-        <!-- Information Section -->
         <div id="sectionInfo" class="content-section">
             <button class="back-btn" onclick="goHome()">← Back to Menu</button>
             <h2 style="margin-bottom: 1rem; color: var(--accent-color); font-size: 1.2rem;">Technical Information</h2>
@@ -396,22 +432,34 @@
     </footer>
 
     <script>
-        function showSection(sectionId) {
-            document.getElementById('homeMenu').classList.remove('active');
-            document.getElementById('section3d').classList.remove('active');
-            document.getElementById('section2d').classList.remove('active');
-            document.getElementById('sectionInfo').classList.remove('active');
+        function loadSection(sectionId) {
+            const loader = document.getElementById('loader');
+            loader.classList.add('show');
             
-            document.getElementById(sectionId).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(() => {
+                document.getElementById('homeMenu').classList.remove('active');
+                document.getElementById('section3d').classList.remove('active');
+                document.getElementById('section2d').classList.remove('active');
+                document.getElementById('sectionInfo').classList.remove('active');
+                
+                document.getElementById(sectionId).classList.add('active');
+                loader.classList.remove('show');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 400);
         }
 
         function goHome() {
-            document.getElementById('section3d').classList.remove('active');
-            document.getElementById('section2d').classList.remove('active');
-            document.getElementById('sectionInfo').classList.remove('active');
-            document.getElementById('homeMenu').classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const loader = document.getElementById('loader');
+            loader.classList.add('show');
+            
+            setTimeout(() => {
+                document.getElementById('section3d').classList.remove('active');
+                document.getElementById('section2d').classList.remove('active');
+                document.getElementById('sectionInfo').classList.remove('active');
+                document.getElementById('homeMenu').classList.add('active');
+                loader.classList.remove('show');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 300);
         }
 
         function shareCatalog() {
@@ -428,46 +476,5 @@
     </script>
 
 </body>
-</html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thermeco</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            text-align: center;
-            padding: 50px;
-            margin: 0;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-            display: inline-block;
-        }
-        img {
-            max-width: 150px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        h1 {
-            color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <!-- مكان الصورة -->
-        <img src="logo.jpg" alt="Thermeco Logo">
-        <h1>مرحباً بكم في شركة Thermeco</h1>
-        <p>موقعنا التجريبي يعمل بنجاح من الهاتف المحمول.</p>
-    </div>
-
-</body>
-</html>
+    </html>
+    
