@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Industrial Catalog - MECO TN</title>
+    <title>MECO TN - Interactive Catalog</title>
     <style>
         :root {
-            --primary-color: #1e293b;
-            --accent-color: #3b82f6;
             --bg-color: #0f172a;
             --card-bg: #1e293b;
+            --accent-color: #3b82f6;
             --text-color: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: #334155;
@@ -25,24 +24,21 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         header {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem;
             text-align: center;
             border-bottom: 2px solid var(--border-color);
-            min-height: 30vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
         .company-logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: var(--accent-color);
             margin-bottom: 0.5rem;
@@ -50,68 +46,93 @@
             letter-spacing: 2px;
         }
 
-        h1.part-name {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-
-        .part-number {
-            font-size: 1.1rem;
-            background: var(--border-color);
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
-            color: var(--text-muted);
-            display: inline-block;
-        }
-
-        section {
-            padding: 3rem 1.5rem;
+        .main-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 2rem 1rem;
+            width: 100%;
             display: flex;
             flex-direction: column;
+            gap: 1.5k;
+            gap: 1.2rem;
+        }
+
+        /* تصميم الأيقونات الثلاثة */
+        .menu-btn {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+            color: var(--text-color);
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid var(--border-color);
-            text-align: center;
+            gap: 1rem;
+            text-decoration: none;
         }
 
-        section h2 {
-            font-size: 1.6rem;
-            margin-bottom: 1.2rem;
-            color: var(--accent-color);
-            position: relative;
+        .menu-btn:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            background-color: #27354f;
         }
 
-        section h2::after {
-            content: '';
+        .menu-btn span {
+            font-size: 1.8rem;
+        }
+
+        /* الأقسام المخفية والظاهرة عند النقر */
+        .content-section {
+            display: none;
+            padding: 1.5rem;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .content-section.active {
             display: block;
-            width: 40px;
-            height: 3px;
-            background-color: var(--accent-color);
-            margin: 0.4rem auto 0;
-            border-radius: 2px;
         }
 
-        .media-container, .info-container {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            background: var(--border-color);
+            color: var(--text-color);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            background: var(--accent-color);
+        }
+
+        /* تنسيق محتوى 2D */
+        .media-box img {
             width: 100%;
-            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+        }
+
+        /* تنسيق محتوى Information */
+        .info-box {
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             padding: 1.5rem;
-            text-align: left;
-        }
-
-        .media-container {
-            padding: 0;
-        }
-
-        .media-container img {
-            width: 100%;
-            height: auto;
-            display: block;
         }
 
         .info-list {
@@ -119,7 +140,7 @@
         }
 
         .info-list li {
-            padding: 0.6rem 0;
+            padding: 0.8rem 0;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
@@ -137,23 +158,31 @@
 
         .info-value {
             color: var(--text-color);
+            text-align: right;
         }
 
-        .viewer-container {
+        /* تنسيق محتوى 3D */
+        .viewer-box {
             width: 100%;
-            max-width: 800px;
             height: 450px;
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        .viewer-container iframe {
+        .viewer-box iframe {
             width: 100%;
             height: 100%;
             border: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
         }
     </style>
 </head>
@@ -161,50 +190,99 @@
 
     <header>
         <div class="company-logo">MECO TN</div>
-        <h1 class="part-name">Industrial Multi-Stage System</h1>
-        <div class="part-number">MECO-SYS-001</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Industrial Equipment Catalog</p>
     </header>
 
-    <!-- 2D View -->
-    <section>
-        <h2>2D View</h2>
-        <div class="media-container">
-            <img src="1000011534.jpg" alt="2D System View">
-        </div>
-    </section>
+    <div class="main-container">
 
-    <!-- Information -->
-    <section>
-        <h2>Information</h2>
-        <div class="info-container">
-            <ul class="info-list">
-                <li>
-                    <span class="info-label">Dimensions (L x W x H):</span>
-                    <span class="info-value">5m Length × 1.5m Width × 1m Height</span>
-                </li>
-                <li>
-                    <span class="info-label">Structure Levels:</span>
-                    <span class="info-value">5 Floors / Levels</span>
-                </li>
-                <li>
-                    <span class="info-label">Weight Capacity:</span>
-                    <span class="info-value">Exceeds 1 Ton</span>
-                </li>
-                <li>
-                    <span class="info-label">Storage Capacity:</span>
-                    <span class="info-value">More than 20 Pieces</span>
-                </li>
-            </ul>
+        <!-- القائمة الرئيسية (الأيقونات الثلاثة) -->
+        <div id="homeMenu" class="content-section active">
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-muted);">Please select an option below:</p>
+            
+            <div class="menu-btn" onclick="showSection('section3d')">
+                <span>📦</span> 3D Model
+            </div>
+            
+            <div class="menu-btn" onclick="showSection('section2d')">
+                <span>🖼️</span> 2D View
+            </div>
+            
+            <div class="menu-btn" onclick="showSection('sectionInfo')">
+                <span>ℹ️</span> Information
+            </div>
         </div>
-    </section>
 
-    <!-- 3D Model -->
-    <section>
-        <h2>3D Model</h2>
-        <div class="viewer-container">
-            <iframe src="https://gmail6690048.autodesk360.com/g/shares/SH90d2dQT28d5b6028119dcd7af2681634f6" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+        <!-- قسم 3D -->
+        <div id="section3d" class="content-section">
+            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
+            <h2 style="margin-bottom: 1rem; color: var(--accent-color);">3D Model View</h2>
+            <div class="viewer-box">
+                <iframe src="https://gmail6690048.autodesk360.com/g/shares/SH90d2dQT28d5b6028119dcd7af2681634f6" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+            </div>
         </div>
-    </section>
+
+        <!-- قسم 2D -->
+        <div id="section2d" class="content-section">
+            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
+            <h2 style="margin-bottom: 1rem; color: var(--accent-color);">2D View</h2>
+            <div class="media-box">
+                <!-- تأكد أن اسم الصورة في هاتفك مطابق لهذا الاسم -->
+                <img src="1000011534_2.jpg" alt="2D System View">
+            </div>
+        </div>
+
+        <!-- قسم Information -->
+        <div id="sectionInfo" class="content-section">
+            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
+            <h2 style="margin-bottom: 1rem; color: var(--accent-color);">Technical Information</h2>
+            <div class="info-box">
+                <ul class="info-list">
+                    <li>
+                        <span class="info-label">Dimensions (L x W x H):</span>
+                        <span class="info-value">5m Length × 1.5m Width × 1m Height</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Structure Levels:</span>
+                        <span class="info-value">5 Floors / Levels</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Weight Capacity:</span>
+                        <span class="info-value">Exceeds 1 Ton</span>
+                    </li>
+                    <li>
+                        <span class="info-label">Storage Capacity:</span>
+                        <span class="info-value">More than 20 Pieces</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 MECO TN - All Rights Reserved
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // إخفاء القائمة الرئيسية وكل الأقسام
+            document.getElementById('homeMenu').classList.remove('active');
+            document.getElementById('section3d').classList.remove('active');
+            document.getElementById('section2d').classList.remove('active');
+            document.getElementById('sectionInfo').classList.remove('active');
+            
+            // إظهار القسم المطلوب فقط
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function goHome() {
+            // العودة للقائمة الرئيسية
+            document.getElementById('section3d').classList.remove('active');
+            document.getElementById('section2d').classList.remove('active');
+            document.getElementById('sectionInfo').classList.remove('active');
+            document.getElementById('homeMenu').classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
