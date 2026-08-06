@@ -1,501 +1,530 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thermeco Industrie - Interactive Catalog</title>
-    <style>
-        :root {
-            --bg-color: #090d16;
-            --card-bg: #131d31;
-            --card-hover: #1e293b;
-            --accent-color: #3b82f6;
-            --neon-green: #22c55e;
-            --facebook-color: #1877f2;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #2a3852;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<title>Thermeco Industrie - Interactive Catalog</title>
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+<style>
 
-        header {
-            background: linear-gradient(180deg, #0f172a 0%, #090d16 100%);
-            padding: 2.5rem 1rem 1.5rem 1rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
+:root{
+    --bg:#090d16;
+    --card:#131d31;
+    --hover:#1e293b;
+    --blue:#3b82f6;
+    --green:#22c55e;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --border:#2a3852;
+}
 
-        .brand-container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-        }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI',Tahoma,sans-serif;
+}
 
-        .logo-img {
-            width: 70px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
-        }
+body{
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
 
-        .brand-text-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.3rem;
-        }
+header{
+    text-align:center;
+    padding:2rem 1rem;
+    background:linear-gradient(#0f172a,#090d16);
+    border-bottom:1px solid var(--border);
+}
 
-        .company-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
-        }
+.logo{
+    width:120px;
+    margin-bottom:15px;
+}
 
-        .tagline {
-            color: var(--neon-green);
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
-        }
+.company-title{
+    font-size:1.8rem;
+    font-weight:900;
+    letter-spacing:3px;
+}
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(34, 197, 94, 0.08);
-            border: 1px solid rgba(34, 197, 94, 0.25);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: var(--neon-green);
-            margin-top: 1rem;
-        }
+.tagline{
+    color:var(--green);
+    margin-top:8px;
+    font-weight:600;
+}
 
-        .status-dot {
-            width: 7px;
-            height: 7px;
-            background-color: var(--neon-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--neon-green);
-            animation: pulse-dot 1.5s infinite;
-        }
+.status-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:10px;
+    padding:5px 12px;
+    border-radius:20px;
+    border:1px solid #22c55e55;
+    color:var(--green);
+    font-size:.8rem;
+}
 
-        @keyframes pulse-dot {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px var(--neon-green); }
-            100% { transform: scale(0.95); opacity: 0.8; }
-        }
+.status-dot{
+    width:7px;
+    height:7px;
+    background:var(--green);
+    border-radius:50%;
+}
 
-        .main-container {
-            max-width: 550px;
-            margin: auto;
-            padding: 2rem 1.2rem;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
+.main-container{
+    max-width:550px;
+    width:100%;
+    margin:auto;
+    padding:2rem 1.2rem;
+}
 
-        .section-intro {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
+.content-section{
+    display:none;
+}
 
-        .menu-card {
-            background-color: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.2rem 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            text-decoration: none;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
+.content-section.active{
+    display:block;
+}
 
-        .menu-card:hover, .menu-card:active {
-            border-color: var(--accent-color);
-            background-color: var(--card-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(59, 130, 246, 0.15);
-        }
+.menu-card{
+    background:var(--card);
+    border:2px solid var(--border);
+    border-radius:16px;
+    padding:1.2rem;
+    margin:1rem 0;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    cursor:pointer;
+    transition:.3s;
+}
 
-        .card-icon {
-            font-size: 2.2rem;
-            background: rgba(59, 130, 246, 0.1);
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
+.menu-card:hover{
+    background:var(--hover);
+    border-color:var(--blue);
+    transform:translateY(-3px);
+}
 
-        .card-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
+.card-icon{
+    font-size:2rem;
+    width:60px;
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#3b82f620;
+    border-radius:12px;
+}
 
-        .card-title {
-            color: var(--text-color);
-            font-size: 1.15rem;
-            font-weight: 700;
-        }
+.card-title{
+    font-size:1.1rem;
+    font-weight:bold;
+}
 
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 0.82rem;
-        }
+.card-desc{
+    color:var(--muted);
+    font-size:.85rem;
+}
+    .viewer-box{
+    width:100%;
+    height:450px;
+    background:var(--card);
+    border:2px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+}
 
-        .content-section {
-            display: none;
-            padding: 0.5rem;
-            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+.viewer-box iframe{
+    width:100%;
+    height:100%;
+    border:0;
+}
 
-        .content-section.active {
-            display: block;
-        }
+.info-box{
+    background:var(--card);
+    border:2px solid var(--border);
+    border-radius:14px;
+    padding:1.5rem;
+}
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+.info-list{
+    list-style:none;
+}
 
-        .back-btn {
-            background: var(--card-bg);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            padding: 0.6rem 1.2rem;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-bottom: 1.2rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
+.info-list li{
+    padding:.8rem 0;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+}
 
-        .back-btn:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-        }
+.info-list li:last-child{
+    border:0;
+}
 
-        .info-box {
-            background-color: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 14px;
-            padding: 1.5rem;
-        }
+.info-label{
+    color:var(--muted);
+    font-weight:bold;
+}
 
-        .info-list {
-            list-style: none;
-        }
+.info-value{
+    text-align:right;
+}
 
-        .info-list li {
-            padding: 0.9rem 0;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.95rem;
-        }
+.back-btn{
+    background:var(--card);
+    color:var(--text);
+    border:1px solid var(--border);
+    padding:.6rem 1rem;
+    border-radius:10px;
+    cursor:pointer;
+    margin-bottom:1rem;
+}
 
-        .info-list li:last-child {
-            border-bottom: none;
-        }
+.action-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:.6rem 1rem;
+    border-radius:10px;
+    border:1px solid var(--border);
+    color:var(--muted);
+    text-decoration:none;
+    background:none;
+    cursor:pointer;
+}
 
-        .info-label {
-            color: var(--text-muted);
-            font-weight: 600;
-        }
+.action-btn:hover{
+    border-color:var(--blue);
+    color:white;
+}
 
-        .info-value {
-            color: var(--text-color);
-            text-align: right;
-            font-weight: 500;
-        }
+footer{
+    text-align:center;
+    padding:1rem;
+    color:var(--muted);
+    border-top:1px solid var(--border);
+    font-size:.8rem;
+}
 
-        .viewer-box {
-            width: 100%;
-            height: 450px;
-            background-color: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 14px;
-            overflow: hidden;
-        }
+.full-image{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
 
-        .viewer-box iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .actions-bar {
-            margin-top: 1.5rem;
-            display: flex;
-            gap: 0.8rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 0.6rem 1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            text-decoration: none;
-        }
-
-        .action-btn:hover {
-            border-color: var(--accent-color);
-            color: var(--text-color);
-        }
-
-        .fb-btn:hover {
-            border-color: var(--facebook-color);
-            color: #ffffff;
-            background: rgba(24, 119, 242, 0.1);
-        }
-
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(9, 13, 22, 0.85);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.25s ease;
-        }
-
-        #loader.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--border-color);
-            border-top: 3px solid var(--accent-color);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            border-top: 1px solid var(--border-color);
-        }
-    </style>
+</style>
 </head>
+
 <body>
 
-    <div id="loader">
-        <div class="spinner"></div>
-        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">Loading Module...</p>
-    </div>
+<header>
 
-    <header>
-        <div class="brand-container">
-            <!-- تم وضع اسم الصورة الرقمي هنا لتظهر بجانب العنوان مباشرة -->
-            <img src="1786041019834.jpg" alt="Thermeco Logo" class="logo-img">
-            <div class="brand-text-group">
-                <div class="company-title">Thermeco</div>
-                <div class="tagline">We are here to help you</div>
-            </div>
-        </div>
-        <div class="status-badge">
-            <div class="status-dot"></div>
-            <span>Live System - Online</span>
-        </div>
-    </header>
+<!-- ضع صورة الشعار هنا -->
+<img src="images/logo.png" class="logo" alt="Thermeco Logo">
 
-    <div class="main-container">
+<div class="company-title">
+Thermeco
+</div>
 
-        <div id="homeMenu" class="content-section active">
-            <p class="section-intro">Select an option to view specifications:</p>
-            
-            <div class="menu-card" onclick="loadSection('section3d')">
-                <div class="card-icon">🌐</div>
-                <div class="card-info">
-                    <div class="card-title">3D Model View</div>
-                    <div class="card-desc">Interactive 3D structural demonstration</div>
-                </div>
-            </div>
-            
-            <div class="menu-card" onclick="loadSection('section2d')">
-                <div class="card-icon">📐</div>
-                <div class="card-info">
-                    <div class="card-title">2D Blueprint View</div>
-                    <div class="card-desc">Technical drawings and system layouts</div>
-                </div>
-            </div>
-            
-            <div class="menu-card" onclick="loadSection('sectionInfo')">
-                <div class="card-icon">📊</div>
-                <div class="card-info">
-                    <div class="card-title">Technical Information</div>
-                    <div class="card-desc">Dimensions, capacity, and specifications</div>
-                </div>
-            </div>
+<div class="tagline">
+We are here to help you
+</div>
 
-            <div class="actions-bar">
-                <a href="https://www.facebook.com/thermeco.industrie/" target="_blank" class="action-btn fb-btn">
-                    <span>👥</span> Visit Facebook
-                </a>
-                <button class="action-btn" onclick="shareCatalog()">
-                    <span>🔗</span> Share Link
-                </button>
-            </div>
-        </div>
+<div class="status-badge">
+<span class="status-dot"></span>
+Live System - Online
+</div>
 
-        <div id="section3d" class="content-section">
-            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
-            <h2 style="margin-bottom: 1rem; color: var(--accent-color); font-size: 1.2rem;">3D Model View</h2>
-            <div class="viewer-box">
-                <iframe src="https://gmail6690048.autodesk360.com/g/shares/SH90d2dQT28d5b6028119dcd7af2681634f6" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
-            </div>
-        </div>
+</header>
 
-        <div id="section2d" class="content-section">
-            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
-            <h2 style="margin-bottom: 1rem; color: var(--accent-color); font-size: 1.2rem;">2D Blueprint View</h2>
-            <div class="info-box" style="text-align: center; padding: 3rem 1rem;">
-                <p style="font-size: 2rem; margin-bottom: 0.8rem;">📐</p>
-                <p style="color: var(--text-color); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">Technical Drawing Preview</p>
-                <p style="color: var(--text-muted); font-size: 0.85rem;">This section displays the structural 2D layouts and technical schematics.</p>
-            </div>
-        </div>
 
-        <div id="sectionInfo" class="content-section">
-            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
-            <h2 style="margin-bottom: 1rem; color: var(--accent-color); font-size: 1.2rem;">Technical Information</h2>
-            <div class="info-box">
-                <ul class="info-list">
-                    <li>
-                        <span class="info-label">Dimensions (L x W x H):</span>
-                        <span class="info-value">5m × 1.5m × 1m</span>
-                    </li>
-                    <li>
-                        <span class="info-label">Structure Levels:</span>
-                        <span class="info-value">5 Floors / Levels</span>
-                    </li>
-                    <li>
-                        <span class="info-label">Weight Capacity:</span>
-                        <span class="info-value">Exceeds 1 Ton</span>
-                    </li>
-                    <li>
-                        <span class="info-label">Storage Capacity:</span>
-                        <span class="info-value">More than 20 Pieces</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<div class="main-container">
 
-    </div>
+<!-- الصفحة الرئيسية -->
 
-    <footer>
-        &copy; 2026 Thermeco Industrie - All Rights Reserved
-    </footer>
+<div id="homeMenu" class="content-section active">
 
-    <script>
-        function loadSection(sectionId) {
-            const loader = document.getElementById('loader');
-            loader.classList.add('show');
-            
-            setTimeout(() => {
-                document.getElementById('homeMenu').classList.remove('active');
-                document.getElementById('section3d').classList.remove('active');
-                document.getElementById('section2d').classList.remove('active');
-                document.getElementById('sectionInfo').classList.remove('active');
-                
-                document.getElementById(sectionId).classList.add('active');
-                loader.classList.remove('show');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 400);
-        }
+<p style="color:var(--muted);text-align:center">
+Select an option to view specifications:
+</p>
 
-        function goHome() {
-            const loader = document.getElementById('loader');
-            loader.classList.add('show');
-            
-            setTimeout(() => {
-                document.getElementById('section3d').classList.remove('active');
-                document.getElementById('section2d').classList.remove('active');
-                document.getElementById('sectionInfo').classList.remove('active');
-                document.getElementById('homeMenu').classList.add('active');
-                loader.classList.remove('show');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 300);
-        }
 
-        function shareCatalog() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Thermeco Catalog',
-                    url: window.location.href
-                }).catch(console.error);
-            } else {
-                navigator.clipboard.writeText(window.location.href);
-                alert('Catalog link copied to clipboard!');
-            }
-        }
-    </script>
+<div class="menu-card" onclick="showSection('section3d')">
+
+<div class="card-icon">🌐</div>
+
+<div>
+<div class="card-title">
+3D Model View
+</div>
+
+<div class="card-desc">
+Interactive 3D structural demonstration
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="menu-card" onclick="showSection('section2d')">
+
+<div class="card-icon">📐</div>
+
+<div>
+<div class="card-title">
+2D Blueprint View
+</div>
+
+<div class="card-desc">
+Technical drawings and system layouts
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="menu-card" onclick="showSection('sectionInfo')">
+
+<div class="card-icon">📊</div>
+
+<div>
+<div class="card-title">
+Technical Information
+</div>
+
+<div class="card-desc">
+Dimensions, capacity, and specifications
+</div>
+
+</div>
+
+</div>
+
+
+<div style="text-align:center;margin-top:20px">
+
+<a class="action-btn"
+href="https://www.facebook.com/thermeco.industrie/"
+target="_blank">
+👥 Visit Facebook
+</a>
+
+
+<button class="action-btn" onclick="shareCatalog()">
+🔗 Share Link
+</button>
+
+</div>
+
+
+</div>
+<!-- 3D MODEL SECTION -->
+
+<div id="section3d" class="content-section">
+
+<button class="back-btn" onclick="goHome()">
+← Back to Menu
+</button>
+
+<h2 style="color:var(--blue);margin-bottom:15px">
+3D Model View
+</h2>
+
+<div class="viewer-box">
+
+<iframe 
+src="https://gmail6690048.autodesk360.com/g/shares/SH90d2dQT28d5b6028119dcd7af2681634f6"
+allowfullscreen>
+</iframe>
+
+</div>
+
+</div>
+
+
+
+<!-- 2D SECTION -->
+
+<div id="section2d" class="content-section">
+
+<button class="back-btn" onclick="goHome()">
+← Back to Menu
+</button>
+
+
+<h2 style="color:var(--blue);margin-bottom:15px">
+2D Blueprint View
+</h2>
+
+
+<div class="info-box" style="text-align:center">
+
+<img src="images/blueprint.jpg"
+class="full-image"
+alt="2D Blueprint">
+
+
+<p style="color:var(--muted);margin-top:15px">
+Technical Drawing Preview
+</p>
+
+</div>
+
+</div>
+
+
+
+
+<!-- INFORMATION SECTION -->
+
+<div id="sectionInfo" class="content-section">
+
+<button class="back-btn" onclick="goHome()">
+← Back to Menu
+</button>
+
+
+<h2 style="color:var(--blue);margin-bottom:15px">
+Technical Information
+</h2>
+
+
+<div class="info-box">
+
+<ul class="info-list">
+
+<li>
+<span class="info-label">
+Dimensions:
+</span>
+
+<span class="info-value">
+5m × 1.5m × 1m
+</span>
+</li>
+
+
+<li>
+<span class="info-label">
+Structure Levels:
+</span>
+
+<span class="info-value">
+5 Floors / Levels
+</span>
+</li>
+
+
+<li>
+<span class="info-label">
+Weight Capacity:
+</span>
+
+<span class="info-value">
+Exceeds 1 Ton
+</span>
+</li>
+
+
+<li>
+<span class="info-label">
+Storage Capacity:
+</span>
+
+<span class="info-value">
+More than 20 Pieces
+</span>
+</li>
+
+
+</ul>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<footer>
+
+© 2026 Thermeco Industrie - All Rights Reserved
+
+</footer>
+<script>
+
+function showSection(id){
+
+document.querySelectorAll(".content-section")
+.forEach(section=>{
+section.classList.remove("active");
+});
+
+
+document.getElementById(id)
+.classList.add("active");
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+
+function goHome(){
+
+showSection("homeMenu");
+
+}
+
+
+
+function shareCatalog(){
+
+if(navigator.share){
+
+navigator.share({
+
+title:"Thermeco Catalog",
+
+url:window.location.href
+
+});
+
+}
+
+else{
+
+navigator.clipboard.writeText(
+window.location.href
+);
+
+alert("Catalog link copied!");
+
+}
+
+}
+
+
+</script>
 
 </body>
-                            </html>
-                            
+
+</html>
