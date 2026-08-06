@@ -6,13 +6,14 @@
     <title>Thermeco Industrie - Interactive Catalog</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
+            --bg-color: #090d16;
+            --card-bg: #131d31;
+            --card-hover: #1e293b;
             --accent-color: #3b82f6;
             --neon-green: #22c55e;
             --text-color: #f8fafc;
             --text-muted: #94a3b8;
-            --border-color: #334155;
+            --border-color: #2a3852;
         }
 
         * {
@@ -32,54 +33,53 @@
         }
 
         header {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            padding: 1.5rem 1rem;
+            background: linear-gradient(180deg, #0f172a 0%, #090d16 100%);
+            padding: 2.5rem 1rem 1.5rem 1rem;
             text-align: center;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .logo-container {
+        .brand-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
+            gap: 0.5rem;
         }
 
-        .company-name {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent-color);
-            letter-spacing: 2px;
+        .company-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
         }
 
         .tagline {
             color: var(--neon-green);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: capitalize;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
         }
 
-        /* System Status Badge */
         .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            padding: 4px 10px;
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.75rem;
             color: var(--neon-green);
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             background-color: var(--neon-green);
             border-radius: 50%;
             box-shadow: 0 0 8px var(--neon-green);
@@ -93,58 +93,77 @@
         }
 
         .main-container {
-            max-width: 600px;
+            max-width: 550px;
             margin: auto;
-            padding: 2rem 1rem;
+            padding: 2rem 1.2rem;
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
         }
 
-        /* Pulse Animation for Primary Button */
-        .pulse-btn {
-            animation: pulse-glow 2s infinite;
+        .section-intro {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
         }
 
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
-            70% { box-shadow: 0 0 0 12px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-        }
-
-        .menu-btn {
+        /* Modern Interactive Cards */
+        .menu-card {
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
-            border-radius: 14px;
-            padding: 1.5rem;
-            text-align: center;
-            color: var(--text-color);
-            font-size: 1.3rem;
-            font-weight: bold;
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-card:hover, .menu-card:active {
+            border-color: var(--accent-color);
+            background-color: var(--card-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            background: rgba(59, 130, 246, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
-            text-decoration: none;
+            flex-shrink: 0;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
-        .menu-btn:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-3px);
-            background-color: #27354f;
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
-        .menu-btn span {
-            font-size: 1.8rem;
+        .card-title {
+            color: var(--text-color);
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.82rem;
         }
 
         .content-section {
             display: none;
-            padding: 1.5rem;
+            padding: 0.5rem;
             animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -158,26 +177,30 @@
         }
 
         .back-btn {
-            background: var(--border-color);
+            background: var(--card-bg);
             color: var(--text-color);
-            border: none;
+            border: 1px solid var(--border-color);
             padding: 0.6rem 1.2rem;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
         }
 
         .back-btn:hover {
             background: var(--accent-color);
+            border-color: var(--accent-color);
         }
 
         .info-box {
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 1.5rem;
         }
 
@@ -186,7 +209,7 @@
         }
 
         .info-list li {
-            padding: 0.8rem 0;
+            padding: 0.9rem 0;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
@@ -205,6 +228,7 @@
         .info-value {
             color: var(--text-color);
             text-align: right;
+            font-weight: 500;
         }
 
         .viewer-box {
@@ -212,7 +236,7 @@
             height: 450px;
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
         }
 
@@ -222,11 +246,9 @@
             border: none;
         }
 
-        /* Quick Share & Actions Area */
         .actions-bar {
             margin-top: 1.5rem;
             display: flex;
-            gap: 1rem;
             justify-content: center;
         }
 
@@ -234,14 +256,14 @@
             background: transparent;
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 0.85rem;
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .share-btn:hover {
@@ -253,7 +275,7 @@
             text-align: center;
             padding: 1rem;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             border-top: 1px solid var(--border-color);
         }
     </style>
@@ -261,9 +283,9 @@
 <body>
 
     <header>
-        <div class="logo-container">
-            <div class="company-name">Thermeco</div>
-            <p class="tagline">We are here to help you</p>
+        <div class="brand-container">
+            <div class="company-title">Thermeco</div>
+            <div class="tagline">We are here to help you</div>
             <div class="status-badge">
                 <div class="status-dot"></div>
                 <span>Live System - Online</span>
@@ -273,19 +295,32 @@
 
     <div class="main-container">
 
+        <!-- Home Menu -->
         <div id="homeMenu" class="content-section active">
-            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-muted);">Please select an option below:</p>
+            <p class="section-intro">Select an option to view specifications:</p>
             
-            <div class="menu-btn pulse-btn" onclick="showSection('section3d')">
-                <span>📦</span> 3D Model View
+            <div class="menu-card" onclick="showSection('section3d')">
+                <div class="card-icon">🌐</div>
+                <div class="card-info">
+                    <div class="card-title">3D Model View</div>
+                    <div class="card-desc">Interactive 3D structural demonstration</div>
+                </div>
             </div>
             
-            <div class="menu-btn" onclick="showSection('section2d')">
-                <span>🖼️</span> 2D Blueprint View
+            <div class="menu-card" onclick="showSection('section2d')">
+                <div class="card-icon">📐</div>
+                <div class="card-info">
+                    <div class="card-title">2D Blueprint View</div>
+                    <div class="card-desc">Technical drawings and system layouts</div>
+                </div>
             </div>
             
-            <div class="menu-btn" onclick="showSection('sectionInfo')">
-                <span>ℹ️</span> Technical Information
+            <div class="menu-card" onclick="showSection('sectionInfo')">
+                <div class="card-icon">📊</div>
+                <div class="card-info">
+                    <div class="card-title">Technical Information</div>
+                    <div class="card-desc">Dimensions, capacity, and specifications</div>
+                </div>
             </div>
 
             <div class="actions-bar">
@@ -295,31 +330,35 @@
             </div>
         </div>
 
+        <!-- 3D Section -->
         <div id="section3d" class="content-section">
-            <button class="back-btn" onclick="goHome()">Back to Menu</button>
-            <h2 style="margin-bottom: 1rem; color: var(--accent-color);">3D Model View</h2>
+            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
+            <h2 style="margin-bottom: 1rem; color: var(--accent-color); font-size: 1.2rem;">3D Model View</h2>
             <div class="viewer-box">
                 <iframe src="https://gmail6690048.autodesk360.com/g/shares/SH90d2dQT28d5b6028119dcd7af2681634f6" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
             </div>
         </div>
 
+        <!-- 2D Section -->
         <div id="section2d" class="content-section">
-            <button class="back-btn" onclick="goHome()">Back to Menu</button>
-            <h2 style="margin-bottom: 1rem; color: var(--accent-color);">2D View</h2>
+            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
+            <h2 style="margin-bottom: 1rem; color: var(--accent-color); font-size: 1.2rem;">2D Blueprint View</h2>
             <div class="info-box" style="text-align: center; padding: 3rem 1rem;">
-                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1rem;">🖼️ Blueprint / Technical Drawing Section</p>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">Place your 2D image file in the project folder whenever you're ready.</p>
+                <p style="font-size: 2rem; margin-bottom: 0.8rem;">📐</p>
+                <p style="color: var(--text-color); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">Technical Drawing Preview</p>
+                <p style="color: var(--text-muted); font-size: 0.85rem;">This section displays the structural 2D layouts and technical schematics.</p>
             </div>
         </div>
 
+        <!-- Information Section -->
         <div id="sectionInfo" class="content-section">
-            <button class="back-btn" onclick="goHome()">Back to Menu</button>
-            <h2 style="margin-bottom: 1rem; color: var(--accent-color);">Technical Information</h2>
+            <button class="back-btn" onclick="goHome()">← Back to Menu</button>
+            <h2 style="margin-bottom: 1rem; color: var(--accent-color); font-size: 1.2rem;">Technical Information</h2>
             <div class="info-box">
                 <ul class="info-list">
                     <li>
                         <span class="info-label">Dimensions (L x W x H):</span>
-                        <span class="info-value">5m Length × 1.5m Width × 1m Height</span>
+                        <span class="info-value">5m × 1.5m × 1m</span>
                     </li>
                     <li>
                         <span class="info-label">Structure Levels:</span>
