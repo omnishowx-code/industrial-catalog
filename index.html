@@ -25,7 +25,8 @@ header{text-align:center;padding:2rem 1rem;background:linear-gradient(#0f172a,#0
 .card-icon{font-size:2rem;width:60px;height:60px;display:flex;align-items:center;justify-content:center;background:#3b82f620;border-radius:12px;}
 .card-title{font-size:1.1rem;font-weight:bold;}
 .card-desc{color:var(--muted);font-size:.85rem;}
-.viewer-box{width:100%;background:var(--card);border:2px solid var(--border);border-radius:14px;padding:1.5rem;}
+.viewer-box{width:100%;background:var(--card);border:2px solid var(--border);border-radius:14px;padding:1rem;overflow:hidden;}
+.blueprint-img{width:100%;height:auto;border-radius:8px;background:white;display:block;}
 .info-box{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:1.5rem;}
 .info-list{list-style:none;}
 .info-list li{padding:.8rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
@@ -98,22 +99,15 @@ Live System - Online
 </div>
 </div>
 
-<!-- 2D SECTION (يعرض محتوى ملف الـ PDF مباشرة وبدقة داخل الصفحة) -->
+<!-- 2D SECTION (يعرض صورة المخطط مباشرة) -->
 <div id="section2d" class="content-section">
 <button class="back-btn" onclick="goHome()">← Back to Menu</button>
-<h2 style="color:var(--blue);margin-bottom:15px">2D Blueprint View & Specs</h2>
+<h2 style="color:var(--blue);margin-bottom:15px">2D Blueprint View</h2>
 <div class="viewer-box">
-<h3 style="color:var(--green);margin-bottom:1rem;border-bottom:1px solid var(--border);padding-bottom:0.5rem;">Technical Drawing Specification</h3>
-<ul class="info-list">
-<li><span class="info-label">Drawing No (DWG):</span><span class="info-value">8040-10[span_1](start_span)[span_1](end_span)</span></li>
-<li><span class="info-label">Scale:</span><span class="info-value">A (1:20)[span_2](start_span)[span_2](end_span)</span></li>
-<li><span class="info-label">Created By:</span><span class="info-value">Houyem Bouchmila[span_3](start_span)[span_3](end_span)</span></li>
-<li><span class="info-label">Date of Issue:</span><span class="info-value">07/08/2026[span_4](start_span)[span_4](end_span)</span></li>
-<li><span class="info-label">Sheet:</span><span class="info-value">1 / 1[span_5](start_span)[span_5](end_span)</span></li>
-<li><span class="info-label">Grid Layout:</span><span class="info-value">A to F / 2 to 8[span_6](start_span)[span_6](end_span)</span></li>
-</ul>
-<div style="margin-top:20px;text-align:center;">
-<a href="2D EX  (1).pdf" target="_blank" class="action-btn" style="width:100%;justify-content:center;background:var(--blue);color:white;border:none;padding:10px;">📄 Open Original PDF File</a>
+<!-- تأكد من تسمية صورة المخطط بهذا الاسم أو تغيير blueprint.jpg لاسمها الحقيقي -->
+<img src="blueprint.jpg" class="blueprint-img" alt="2D Blueprint 8040-10">
+<div style="text-align:center;margin-top:15px;">
+<a href="blueprint.jpg" target="_blank" class="action-btn" style="width:100%;justify-content:center;">🔍 Open Full Image Size</a>
 </div>
 </div>
 </div>
