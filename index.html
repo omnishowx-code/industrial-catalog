@@ -10,7 +10,7 @@
 body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;}
 header{text-align:center;padding:2rem 1rem;background:linear-gradient(#0f172a,#090d16);border-bottom:1px solid var(--border);}
 .brand-container{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:1.5rem;}
-.logo{width:70px;height:70px;object-fit:cover;border-radius:50%;border:2px solid var(--blue);box-shadow:0 0 15px rgba(59,130,246,0.4);}
+.logo{width:70px;height:70px;object-fit:cover;border-radius:50%;border:2px solid var(--blue);box-shadow:0 0 15px rgba(59,130,246,0.4);background:#1e293b;}
 .brand-text-group{display:flex;flex-direction:column;align-items:flex-start;gap:0.3rem;}
 .company-title{font-size:1.8rem;font-weight:900;letter-spacing:3px;}
 .tagline{color:var(--green);font-size:0.9rem;font-weight:600;}
@@ -25,7 +25,7 @@ header{text-align:center;padding:2rem 1rem;background:linear-gradient(#0f172a,#0
 .card-title{font-size:1.1rem;font-weight:bold;}
 .card-desc{color:var(--muted);font-size:.85rem;}
 .viewer-box{width:100%;height:450px;background:var(--card);border:2px solid var(--border);border-radius:14px;overflow:hidden;}
-.viewer-box iframe{width:100%;height:100%;border:0;}
+.viewer-box iframe, .viewer-box embed{width:100%;height:100%;border:0;}
 .info-box{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:1.5rem;}
 .info-list{list-style:none;}
 .info-list li{padding:.8rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
@@ -36,14 +36,14 @@ header{text-align:center;padding:2rem 1rem;background:linear-gradient(#0f172a,#0
 .action-btn{display:inline-flex;align-items:center;gap:6px;padding:.6rem 1rem;border-radius:10px;border:1px solid var(--border);color:var(--muted);text-decoration:none;background:none;cursor:pointer;}
 .action-btn:hover{border-color:var(--blue);color:white;}
 footer{text-align:center;padding:1rem;color:var(--muted);border-top:1px solid var(--border);font-size:.8rem;}
-.full-image{width:100%;height:auto;max-height:400px;object-fit:contain;border-radius:8px;}
 </style>
 </head>
 <body>
 
 <header>
 <div class="brand-container">
-<img src="1786041019834.jpg" class="logo" alt="Thermeco Logo">
+<!-- ضع اسم صورة الشعار الحقيقي لديك هنا (مثال: logo.jpg) -->
+<img src="logo.jpg" class="logo" alt="Thermeco Logo" onerror="this.style.display='none'">
 <div class="brand-text-group">
 <div class="company-title">Thermeco</div>
 <div class="tagline">We are here to help you</div>
@@ -99,15 +99,15 @@ Live System - Online
 </div>
 </div>
 
-<!-- 2D SECTION -->
+<!-- 2D SECTION (PDF Viewer) -->
 <div id="section2d" class="content-section">
 <button class="back-btn" onclick="goHome()">← Back to Menu</button>
 <h2 style="color:var(--blue);margin-bottom:15px">2D Blueprint View</h2>
-<div class="info-box" style="text-align:center">
-<!-- عرض ملف الـ PDF كصورة مدمجة للمخطط -->
-<img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'><rect width='100%´' height='100%' fill='%23131d31'/><text x='50%' y='45%' fill='%233b82f6' font-size='22' font-family='sans-serif' font-weight='bold' text-anchor='middle'>Technical Drawing (8040-10)</text><text x='50%' y='55%' fill='%2394a3b8' font-size='14' font-family='sans-serif' text-anchor='middle'>Created by Houyem Bouchmila - 07/08/2026</text></svg>" class="full-image" alt="2D Blueprint">
-<p style="color:var(--muted);margin-top:15px">Technical Drawing Preview - Ref: 8040-10 (Houyem Bouchmila)</p>
+<div class="viewer-box">
+<!-- هنا يتم عرض ملف الـ PDF مباشرة (تأكد أن اسم الملف على جيثب مطابق تماماً مثل 2D EX.pdf أو قم بتغييره هنا ليطابقه) -->
+<embed src="2D EX.pdf" type="application/pdf">
 </div>
+<p style="color:var(--muted);margin-top:10px;text-align:center;font-size:0.85rem;">Technical Drawing - Ref: 8040-10[span_0](start_span)[span_0](end_span)</p>
 </div>
 
 <!-- INFORMATION SECTION -->
@@ -129,7 +129,7 @@ Live System - Online
 
 <script>
 function showSection(id){
-document.querySelectorAll(".content-section").forEach(section=>{section.classList.remove("active");});
+document.querySelectorAll(".content-section").forEach(s=>s.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 window.scrollTo({top:0,behavior:"smooth"});
 }
