@@ -10,7 +10,8 @@
 body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;}
 header{text-align:center;padding:2rem 1rem;background:linear-gradient(#0f172a,#090d16);border-bottom:1px solid var(--border);}
 .brand-container{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:1.5rem;}
-.logo{width:70px;height:70px;object-fit:cover;border-radius:50%;border:2px solid var(--blue);box-shadow:0 0 15px rgba(59,130,246,0.4);background:#1e293b;}
+.logo{width:70px;height:70px;object-fit:cover;border-radius:50%;border:2px solid var(--blue);box-shadow:0 0 15px rgba(59,130,246,0.4);background:#1e293b;cursor:pointer;transition:0.3s;}
+.logo:hover{transform:scale(1.05);border-color:var(--green);}
 .brand-text-group{display:flex;flex-direction:column;align-items:flex-start;gap:0.3rem;}
 .company-title{font-size:1.8rem;font-weight:900;letter-spacing:3px;}
 .tagline{color:var(--green);font-size:0.9rem;font-weight:600;}
@@ -42,7 +43,10 @@ footer{text-align:center;padding:1rem;color:var(--muted);border-top:1px solid va
 
 <header>
 <div class="brand-container">
+<!-- الشعار الآن أصبح رابطاً يفتح الرابط الذي أردته في تبويب جديد -->
+<a href="https://kommodo.ai/i/rHuYfKGr3XBiKBaj30iK" target="_blank">
 <img src="logo.jpg" class="logo" alt="Thermeco Logo">
+</a>
 <div class="brand-text-group">
 <div class="company-title">Thermeco</div>
 <div class="tagline">We are here to help you</div>
@@ -138,3 +142,4 @@ else{navigator.clipboard.writeText(window.location.href);alert("Catalog link cop
 </script>
 </body>
 </html>
+
