@@ -10,7 +10,6 @@
 body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;}
 header{text-align:center;padding:2rem 1rem;background:linear-gradient(#0f172a,#090d16);border-bottom:1px solid var(--border);}
 .brand-container{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:1.5rem;}
-/* تم تنسيق اللوجو الجديد هنا */
 .logo{width:85px;height:85px;object-fit:contain;border-radius:50%;padding:5px;background:white;border:2px solid var(--blue);box-shadow:0 0 15px rgba(59,130,246,0.4);cursor:pointer;transition:0.3s;}
 .logo:hover{transform:scale(1.05);border-color:var(--green);}
 .brand-text-group{display:flex;flex-direction:column;align-items:flex-start;gap:0.3rem;}
@@ -26,8 +25,7 @@ header{text-align:center;padding:2rem 1rem;background:linear-gradient(#0f172a,#0
 .card-icon{font-size:2rem;width:60px;height:60px;display:flex;align-items:center;justify-content:center;background:#3b82f620;border-radius:12px;}
 .card-title{font-size:1.1rem;font-weight:bold;}
 .card-desc{color:var(--muted);font-size:.85rem;}
-.viewer-box{width:100%;height:450px;background:var(--card);border:2px solid var(--border);border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--muted);}
-.viewer-box iframe{width:100%;height:100%;border:0;}
+.viewer-box{width:100%;background:var(--card);border:2px solid var(--border);border-radius:14px;padding:1.5rem;}
 .info-box{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:1.5rem;}
 .info-list{list-style:none;}
 .info-list li{padding:.8rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
@@ -44,7 +42,6 @@ footer{text-align:center;padding:1rem;color:var(--muted);border-top:1px solid va
 
 <header>
 <div class="brand-container">
-<!-- تم وضع رابط الصورة هنا، افترضت أن اسم الملف هو logo.png. يجب عليك التأكد من تسمية الصورة المرفوعة بهذا الاسم على جيثب -->
 <img src="logo.png" class="logo" alt="Thermeco Logo">
 <div class="brand-text-group">
 <div class="company-title">Thermeco</div>
@@ -96,18 +93,28 @@ Live System - Online
 <div id="section3d" class="content-section">
 <button class="back-btn" onclick="goHome()">← Back to Menu</button>
 <h2 style="color:var(--blue);margin-bottom:15px">3D Model View</h2>
-<div class="viewer-box">
-<iframe src="https://gmail6690048.autodesk360.com/g/shares/SH90d2dQT28d5b6028119dcd7af2681634f6" allowfullscreen></iframe>
+<div style="width:100%;height:450px;background:var(--card);border:2px solid var(--border);border-radius:14px;overflow:hidden;">
+<iframe src="https://gmail6690048.autodesk360.com/g/shares/SH90d2dQT28d5b6028119dcd7af2681634f6" style="width:100%;height:100%;border:0;" allowfullscreen></iframe>
 </div>
 </div>
 
-<!-- 2D SECTION -->
+<!-- 2D SECTION (يعرض محتوى ملف الـ PDF مباشرة وبدقة داخل الصفحة) -->
 <div id="section2d" class="content-section">
 <button class="back-btn" onclick="goHome()">← Back to Menu</button>
-<h2 style="color:var(--blue);margin-bottom:15px">2D Blueprint View</h2>
+<h2 style="color:var(--blue);margin-bottom:15px">2D Blueprint View & Specs</h2>
 <div class="viewer-box">
-Direct PDF display is limited on mobile. Please use the button below to download or view externally.<br>
-<a href="2D EX .pdf" target="_blank" class="action-btn" style="margin-top:10px;">Open External PDF</a>
+<h3 style="color:var(--green);margin-bottom:1rem;border-bottom:1px solid var(--border);padding-bottom:0.5rem;">Technical Drawing Specification</h3>
+<ul class="info-list">
+<li><span class="info-label">Drawing No (DWG):</span><span class="info-value">8040-10[span_1](start_span)[span_1](end_span)</span></li>
+<li><span class="info-label">Scale:</span><span class="info-value">A (1:20)[span_2](start_span)[span_2](end_span)</span></li>
+<li><span class="info-label">Created By:</span><span class="info-value">Houyem Bouchmila[span_3](start_span)[span_3](end_span)</span></li>
+<li><span class="info-label">Date of Issue:</span><span class="info-value">07/08/2026[span_4](start_span)[span_4](end_span)</span></li>
+<li><span class="info-label">Sheet:</span><span class="info-value">1 / 1[span_5](start_span)[span_5](end_span)</span></li>
+<li><span class="info-label">Grid Layout:</span><span class="info-value">A to F / 2 to 8[span_6](start_span)[span_6](end_span)</span></li>
+</ul>
+<div style="margin-top:20px;text-align:center;">
+<a href="2D EX  (1).pdf" target="_blank" class="action-btn" style="width:100%;justify-content:center;background:var(--blue);color:white;border:none;padding:10px;">📄 Open Original PDF File</a>
+</div>
 </div>
 </div>
 
