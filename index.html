@@ -26,8 +26,8 @@ header{text-align:center;padding:2rem 1rem;background:linear-gradient(#0f172a,#0
 .card-desc{color:var(--muted);font-size:.85rem;}
 .viewer-box{width:100%;height:450px;background:var(--card);border:2px solid var(--border);border-radius:14px;overflow:hidden;}
 .viewer-box iframe{width:100%;height:100%;border:0;}
-.info-box{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:1.5rem;text-align:center;}
-.info-list{list-style:none;text-align:left;}
+.info-box{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:1.5rem;}
+.info-list{list-style:none;}
 .info-list li{padding:.8rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;}
 .info-list li:last-child{border:0;}
 .info-label{color:var(--muted);font-weight:bold;}
@@ -35,8 +35,6 @@ header{text-align:center;padding:2rem 1rem;background:linear-gradient(#0f172a,#0
 .back-btn{background:var(--card);color:var(--text);border:1px solid var(--border);padding:.6rem 1rem;border-radius:10px;cursor:pointer;margin-bottom:1rem;}
 .action-btn{display:inline-flex;align-items:center;gap:6px;padding:.6rem 1rem;border-radius:10px;border:1px solid var(--border);color:var(--muted);text-decoration:none;background:none;cursor:pointer;}
 .action-btn:hover{border-color:var(--blue);color:white;}
-.pdf-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--blue);color:white;padding:0.8rem 1.5rem;border-radius:10px;text-decoration:none;font-weight:bold;margin-top:1rem;transition:0.3s;}
-.pdf-btn:hover{opacity:0.9;transform:translateY(-2px);}
 footer{text-align:center;padding:1rem;color:var(--muted);border-top:1px solid var(--border);font-size:.8rem;}
 </style>
 </head>
@@ -104,14 +102,8 @@ Live System - Online
 <div id="section2d" class="content-section">
 <button class="back-btn" onclick="goHome()">← Back to Menu</button>
 <h2 style="color:var(--blue);margin-bottom:15px">2D Blueprint View</h2>
-<div class="info-box">
-<div style="font-size: 3rem; margin-bottom: 10px;">📐</div>
-<p style="color: var(--text); font-weight: bold; font-size: 1.2rem; margin-bottom: 5px;">Technical Drawing (8040-10)</p>
-<p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 15px;">Created by Houyem Bouchmila - 07/08/2026[span_0](start_span)[span_0](end_span)</p>
-<!-- زر احترافي يفتح ملف البي دي اف مباشرة في نافذة جديدة أو يقوم بتحميله بلمسة واحدة -->
-<a href="2D EX .pdf" target="_blank" class="pdf-btn">
-📄 Open Blueprint PDF
-</a>
+<div class="viewer-box">
+<iframe src="2D EX .pdf"></iframe>
 </div>
 </div>
 
